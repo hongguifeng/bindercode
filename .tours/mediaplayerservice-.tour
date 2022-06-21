@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "MediaPlayerService 服务创建流程",
+  "steps": [
+    {
+      "file": "mediaserver/main_mediaserver.cpp",
+      "description": "### MediaPlayerService 服务创建",
+      "line": 51
+    }
+  ]
+}
