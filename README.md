@@ -1,3 +1,5 @@
+android 10, kernel 3.10  
+
 android -> kernel/leo/drivers/android  
 binder -> frameworks/native/libs/binder/  
 libcutils -> system/core/libcutils  
