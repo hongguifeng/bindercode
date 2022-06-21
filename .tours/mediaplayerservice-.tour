@@ -6,6 +6,66 @@
       "file": "mediaserver/main_mediaserver.cpp",
       "description": "### MediaPlayerService 服务创建",
       "line": 51
+    },
+    {
+      "file": "libmediaplayerservice/MediaPlayerService.cpp",
+      "description": "### addService 添加服务",
+      "line": 273
+    },
+    {
+      "file": "binder/IServiceManager.cpp",
+      "description": "### BpServiceManager.addService 添加服务\nremote 返回 BpServiceManager 创建时传入的 BpBinder 对象， 最终调用到 IPCThreadState::transact() 方法。",
+      "line": 191
+    },
+    {
+      "file": "binder/IPCThreadState.cpp",
+      "description": "### IPCThreadState::transact",
+      "line": 650,
+      "selection": {
+        "start": {
+          "line": 650,
+          "character": 10
+        },
+        "end": {
+          "line": 650,
+          "character": 34
+        }
+      }
+    },
+    {
+      "file": "binder/IServiceManager.cpp",
+      "description": "### defaultServiceManager 创建流程\n \n`interface_cast <IServiceManager> ()` 模板展开后为：\n```\nsp<IServiceManager> IServiceManager::asInterface(\n        sp<::android::IBinder>& obj)               \n{                                                                   \n    sp<IServiceManager> intr;                            \n    if (obj != nullptr) {                                           \n        intr = static_cast<IServiceManager*>(                         \n            obj->queryLocalInterface(                               \n                    IServiceManager::descriptor).get());               \n        if (intr == nullptr) {                                      \n            intr = new BpServiceManager(obj);                          \n        }                                                           \n    }                                                              \n    return intr;                                                    \n}   \n```\n\n最终创建一个 BpServiceManager 对象。",
+      "line": 44,
+      "selection": {
+        "start": {
+          "line": 44,
+          "character": 38
+        },
+        "end": {
+          "line": 44,
+          "character": 69
+        }
+      }
+    },
+    {
+      "file": "binder/IServiceManager.cpp",
+      "description": "### 获取 ServiceManager 的 IBinder 实例\n通过 ServiceManager 固定的 handler 值 0 创建一个 BpBinder 对象。",
+      "line": 45
+    },
+    {
+      "file": "binder/ProcessState.cpp",
+      "description": "### ProcessState 对象初始化\n\nProcessState 为单例，每个进程只有一个。其初始化时主要的操作为：\n1. 打开 /dev/binder 驱动\n2. 通过 ioctl 设置最大 binder 线程数量为 15\n3. 通过 mmap 映射内核空间内存 1MB-8KB",
+      "line": 424,
+      "selection": {
+        "start": {
+          "line": 43,
+          "character": 9
+        },
+        "end": {
+          "line": 43,
+          "character": 23
+        }
+      }
     }
   ]
 }
